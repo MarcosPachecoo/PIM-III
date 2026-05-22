@@ -1,4 +1,4 @@
-var carrinho = {};
+﻿var carrinho = {};
 var enderecoApiPedidos = "http://localhost:5000/api/pedidos";
 var enderecoApiChamados = "http://localhost:5000/api/chamados";
 var modoAutenticacao = "login";
@@ -701,3 +701,4 @@ async function finalizarPedido() {
 
 document.addEventListener("DOMContentLoaded", iniciarAutenticacao);
 document.addEventListener("DOMContentLoaded", iniciarMontadorPizza);
+

@@ -51,7 +51,7 @@ var chamadosPadrao = new List<Chamado>
 
 var conexaoBanco = builder.Configuration.GetConnectionString("NapoliExpress")
     ?? builder.Configuration["MYSQL_CONNECTION_STRING"]
-    ?? "Server=localhost;Port=3306;Database=napoli_express_pizzaria;User ID=root;Password=;";
+    ?? "Server=localhost;Port=3306;Database=napoli_express_pizzaria;User ID=root;Password=;CharSet=utf8mb4;";
 
 CriarEstruturaBanco(conexaoBanco);
 
@@ -512,7 +512,7 @@ static void CriarEstruturaBanco(string conexaoBanco)
             telefone VARCHAR(20),
             senha VARCHAR(100),
             data_cadastro DATE
-        );
+        ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
         """,
         """
         CREATE TABLE IF NOT EXISTS pedidos (
@@ -526,7 +526,7 @@ static void CriarEstruturaBanco(string conexaoBanco)
             id_funcionario INT,
             FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
             FOREIGN KEY (id_funcionario) REFERENCES funcionarios(id_funcionario)
-        );
+        ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
         """,
         """
         CREATE TABLE IF NOT EXISTS itens_pedido (
@@ -538,7 +538,7 @@ static void CriarEstruturaBanco(string conexaoBanco)
             subtotal DECIMAL(10,2),
             id_pedido INT,
             FOREIGN KEY (id_pedido) REFERENCES pedidos(id_pedido)
-        );
+        ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
         """,
         """
         CREATE TABLE IF NOT EXISTS pizzas (
@@ -551,7 +551,7 @@ static void CriarEstruturaBanco(string conexaoBanco)
             valor_da_borda DECIMAL(10,2),
             id_item INT,
             FOREIGN KEY (id_item) REFERENCES itens_pedido(id_item)
-        );
+        ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
         """,
         """
         CREATE TABLE IF NOT EXISTS bebidas (
@@ -561,7 +561,7 @@ static void CriarEstruturaBanco(string conexaoBanco)
             valor DECIMAL(10,2),
             id_item INT,
             FOREIGN KEY (id_item) REFERENCES itens_pedido(id_item)
-        );
+        ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
         """,
         """
         CREATE TABLE IF NOT EXISTS funcionarios (
@@ -570,7 +570,7 @@ static void CriarEstruturaBanco(string conexaoBanco)
             email VARCHAR(100),
             senha VARCHAR(100),
             cargo VARCHAR(50)
-        );
+        ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
         """,
         """
         CREATE TABLE IF NOT EXISTS chamados (
@@ -583,7 +583,7 @@ static void CriarEstruturaBanco(string conexaoBanco)
             mensagem TEXT,
             status VARCHAR(50),
             data_hora DATETIME
-        );
+        ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
         """
     };
 
@@ -596,7 +596,7 @@ static void CriarEstruturaBanco(string conexaoBanco)
     using var comandoFuncionario = new MySqlCommand(
         """
         INSERT INTO funcionarios (id_funcionario, nome, email, senha, cargo)
-        SELECT 1, 'Joao Silva', 'joao@napoliexpress.com', '123', 'Gerente'
+        SELECT 1, 'João Silva', 'joao@napoliexpress.com', '123', 'Gerente'
         WHERE NOT EXISTS (SELECT 1 FROM funcionarios WHERE id_funcionario = 1);
         """,
         conexao);
@@ -913,13 +913,13 @@ static DetalhesPizza ExtrairDetalhesPizza(string nome)
     var tamanho = nome.Split('(', 2)[0].Replace("Pizza", "").Trim();
     var sabores = nome.Split('(', 2)[1].Split(')', 2)[0].Trim();
     var borda = nome.Contains(" - ") ? nome.Split(" - ", 2)[1].Trim() : "Sem borda";
-    var fatias = tamanho.Equals("Media", StringComparison.OrdinalIgnoreCase) || tamanho.Equals("Média", StringComparison.OrdinalIgnoreCase) ? 6 :
-        tamanho.Equals("Familia", StringComparison.OrdinalIgnoreCase) || tamanho.Equals("Família", StringComparison.OrdinalIgnoreCase) ? 12 :
+    var fatias = tamanho.Equals("Média", StringComparison.OrdinalIgnoreCase) || tamanho.Equals("Média", StringComparison.OrdinalIgnoreCase) ? 6 :
+        tamanho.Equals("Família", StringComparison.OrdinalIgnoreCase) || tamanho.Equals("Família", StringComparison.OrdinalIgnoreCase) ? 12 :
         tamanho.Equals("Pequena", StringComparison.OrdinalIgnoreCase) || tamanho.Equals("Broto", StringComparison.OrdinalIgnoreCase) ? 4 :
         tamanho.Equals("Grande", StringComparison.OrdinalIgnoreCase) ? 8 : 0;
     var valorPizza = tamanho.Equals("Pequena", StringComparison.OrdinalIgnoreCase) || tamanho.Equals("Broto", StringComparison.OrdinalIgnoreCase) ? 34.90m :
-        tamanho.Equals("Media", StringComparison.OrdinalIgnoreCase) || tamanho.Equals("Média", StringComparison.OrdinalIgnoreCase) ? 39.90m :
-        tamanho.Equals("Familia", StringComparison.OrdinalIgnoreCase) || tamanho.Equals("Família", StringComparison.OrdinalIgnoreCase) ? 69.90m :
+        tamanho.Equals("Média", StringComparison.OrdinalIgnoreCase) || tamanho.Equals("Média", StringComparison.OrdinalIgnoreCase) ? 39.90m :
+        tamanho.Equals("Família", StringComparison.OrdinalIgnoreCase) || tamanho.Equals("Família", StringComparison.OrdinalIgnoreCase) ? 69.90m :
         tamanho.Equals("Grande", StringComparison.OrdinalIgnoreCase) ? 49.90m : 0;
     var valorBorda = borda.Equals("Catupiry", StringComparison.OrdinalIgnoreCase) ? 8.90m :
         borda.Equals("Cheddar", StringComparison.OrdinalIgnoreCase) ? 10.90m :
@@ -1056,4 +1056,6 @@ class Chamado
     public DateTime DataHora { get; set; }
     public string Status { get; set; } = "";
 }
+
+
 

@@ -1,7 +1,14 @@
-CREATE DATABASE IF NOT EXISTS napoli_express_pizzaria;
+CREATE DATABASE IF NOT EXISTS napoli_express_pizzaria
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
 
 USE napoli_express_pizzaria;
 
+ALTER DATABASE napoli_express_pizzaria
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
+SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 DROP TABLE IF EXISTS chamados;
@@ -25,7 +32,7 @@ CREATE TABLE clientes (
     telefone VARCHAR(20),
     senha VARCHAR(100),
     data_cadastro DATE
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO clientes (nome, email, telefone, senha, data_cadastro)
 VALUES
@@ -45,11 +52,11 @@ CREATE TABLE funcionarios (
     email VARCHAR(100),
     senha VARCHAR(100),
     cargo VARCHAR(50)
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO funcionarios (nome, email, senha, cargo)
 VALUES
-('Joao Silva', 'joao@napoliexpress.com', '123', 'Gerente'),
+('João Silva', 'joao@napoliexpress.com', '123', 'Gerente'),
 ('Maria Souza', 'maria@napoliexpress.com', '456', 'Caixa'),
 ('Carlos Lima', 'carlos@napoliexpress.com', '789', 'Entregador'),
 ('Ana Paula', 'ana@napoliexpress.com', '111', 'Atendente'),
@@ -72,14 +79,14 @@ CREATE TABLE pedidos (
     id_funcionario INT,
     FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
     FOREIGN KEY (id_funcionario) REFERENCES funcionarios(id_funcionario)
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO pedidos (endereco_entrega, forma_pagamento, total_pedido, status_pedido, data_hora, id_cliente, id_funcionario)
 VALUES
-('Rua das Flores, 120', 'Cartao de Credito', 64.80, 'Entregue', '2025-05-10 19:30:00', 1, 1),
+('Rua das Flores, 120', 'Cartão de Crédito', 64.80, 'Entregue', '2025-05-10 19:30:00', 1, 1),
 ('Av. Paulista, 450', 'PIX', 67.80, 'Em preparo', '2025-05-11 20:15:00', 2, 2),
 ('Rua Central, 89', 'Dinheiro', 39.90, 'Entregue', '2025-05-12 18:40:00', 3, 4),
-('Rua Aurora, 300', 'Cartao de Debito', 82.80, 'Saiu para entrega', '2025-05-13 21:00:00', 4, 3),
+('Rua Aurora, 300', 'Cartão de Débito', 82.80, 'Saiu para entrega', '2025-05-13 21:00:00', 4, 3),
 ('Av. Brasil, 1500', 'PIX', 44.80, 'Em preparo', '2025-05-14 19:10:00', 5, 2);
 
 -- =========================================
@@ -95,14 +102,14 @@ CREATE TABLE itens_pedido (
     subtotal DECIMAL(10,2),
     id_pedido INT,
     FOREIGN KEY (id_pedido) REFERENCES pedidos(id_pedido)
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO itens_pedido (tipo_item, nome_item, quantidade, valor_unitario, subtotal, id_pedido)
 VALUES
 ('Pizza', 'Calabresa', 1, 49.90, 49.90, 1),
 ('Bebida', 'Coca-Cola 2L', 1, 14.90, 14.90, 1),
 ('Pizza', 'Portuguesa', 1, 54.90, 54.90, 2),
-('Bebida', 'Guarana Antartica 2L', 1, 12.90, 12.90, 2),
+('Bebida', 'Guaraná Antártica 2L', 1, 12.90, 12.90, 2),
 ('Pizza', 'Mussarela', 1, 39.90, 39.90, 3);
 
 -- =========================================
@@ -119,14 +126,14 @@ CREATE TABLE pizzas (
     valor_da_borda DECIMAL(10,2),
     id_item INT,
     FOREIGN KEY (id_item) REFERENCES itens_pedido(id_item)
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO pizzas (tamanho, quantidade_fatias, sabores, borda, valor_da_pizza, valor_da_borda, id_item)
 VALUES
 ('Grande', 8, 'Calabresa', 'Catupiry', 49.90, 8.90, 1),
 ('Grande', 8, 'Portuguesa', 'Cheddar', 54.90, 10.90, 3),
-('Media', 6, 'Mussarela', 'Sem borda', 39.90, 0.00, 5),
-('Familia', 12, 'Frango com Catupiry', 'Chocolate', 69.90, 12.90, 4),
+('Média', 6, 'Mussarela', 'Sem borda', 39.90, 0.00, 5),
+('Família', 12, 'Frango com Catupiry', 'Chocolate', 69.90, 12.90, 4),
 ('Pequena', 4, 'Quatro Queijos', 'Catupiry', 34.90, 7.90, 5);
 
 -- =========================================
@@ -140,15 +147,18 @@ CREATE TABLE bebidas (
     valor DECIMAL(10,2),
     id_item INT,
     FOREIGN KEY (id_item) REFERENCES itens_pedido(id_item)
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO bebidas (nome_bebida, quantidade, valor, id_item)
 VALUES
-('Coca-Cola 2L', 1, 14.90, 2),
-('Guarana Antartica 2L', 2, 12.90, 4),
-('Fanta Laranja 2L', 1, 11.90, 3),
-('Agua Mineral 500ml', 2, 4.50, 4),
-('Suco de Laranja 1L', 1, 9.90, 5);
+('Coca Cola 2L', 1, 14.90, NULL),
+('Fanta 2L', 1, 11.90, NULL),
+('Sprite 2L', 1, 6.00, NULL),
+('Guaraná Antártica 2L', 1, 12.90, NULL),
+('Coca Cola 1,5L', 1, 6.00, NULL),
+('Coca Cola Lata', 1, 3.50, NULL),
+('Água Mineral 500ml', 1, 4.50, NULL),
+('Suco de Laranja 1L', 1, 9.90, NULL);
 
 -- =========================================
 -- TABELA CHAMADOS
@@ -164,10 +174,10 @@ CREATE TABLE chamados (
     mensagem TEXT,
     status VARCHAR(50),
     data_hora DATETIME
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO chamados (nome_cliente, email, telefone, unidade, assunto, mensagem, status, data_hora)
 VALUES
 ('Ana Souza', 'ana@gmail.com', '11987654321', 'Napoli Express Osasco', 'Atraso no Pedido', 'O pedido demorou mais de 1 hora para chegar.', 'Resolvido', '2025-05-15 20:30:00'),
-('Bruno Lima', 'bruno@gmail.com', '11991234567', 'Napoli Express Barueri', 'Pedido Errado', 'Recebi sabor diferente do solicitado.', 'Em analise', '2025-05-16 19:10:00'),
-('Juliana Rocha', 'juliana@gmail.com', '11993332211', 'Napoli Express Carapicuiba', 'Elogio', 'Excelente atendimento e entrega rapida.', 'Finalizado', '2025-05-17 21:00:00');
+('Bruno Lima', 'bruno@gmail.com', '11991234567', 'Napoli Express Barueri', 'Pedido Errado', 'Recebi sabor diferente do solicitado.', 'Em análise', '2025-05-16 19:10:00'),
+('Juliana Rocha', 'juliana@gmail.com', '11993332211', 'Napoli Express Carapicuíba', 'Elogio', 'Excelente atendimento e entrega rápida.', 'Finalizado', '2025-05-17 21:00:00');
