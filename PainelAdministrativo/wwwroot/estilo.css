@@ -1,0 +1,264 @@
+* {
+  box-sizing: border-box;
+  font-family: "Roboto", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #f6f4ea;
+  color: #313c3e;
+  min-height: 100vh;
+}
+
+.topo {
+  align-items: center;
+  background: #f6f4ea;
+  border-bottom: 1px solid #e0d8c6;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.6rem 2rem;
+}
+
+.topo strong {
+  color: #c40a0c;
+  font-size: 1.4rem;
+}
+
+.topo nav {
+  display: flex;
+  gap: 0.8rem;
+}
+
+a {
+  color: #c40a0c;
+  text-decoration: none;
+}
+
+.topo a,
+.botao-link,
+button {
+  background: #c40a0c;
+  border: 0;
+  border-radius: 12px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1rem;
+  padding: 0.8rem 1rem;
+}
+
+.conteudo {
+  margin: 0 auto;
+  max-width: 1100px;
+  padding: 3rem 2rem;
+}
+
+.titulo-pagina {
+  margin-bottom: 2rem;
+}
+
+.titulo-pagina h1,
+.cartao h1,
+.cartao h2 {
+  color: #c40a0c;
+  margin-bottom: 0.6rem;
+}
+
+.subtitulo,
+.titulo-pagina p,
+.cartao p {
+  color: #467f8e;
+}
+
+.cartao {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.18) 0 8px 24px;
+  padding: 2rem;
+}
+
+.login {
+  margin: 4rem auto;
+  max-width: 430px;
+}
+
+form {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 1.2rem;
+}
+
+label {
+  color: #313c3e;
+  font-weight: 700;
+}
+
+input,
+select {
+  border: 1px solid #d8d8d8;
+  border-radius: 12px;
+  font-size: 1rem;
+  padding: 0.9rem 1rem;
+  width: 100%;
+}
+
+small {
+  color: #777;
+  display: block;
+  margin-top: 1rem;
+}
+
+.erro {
+  background: #ffe7e7;
+  border-radius: 12px;
+  color: #c40a0c;
+  margin-top: 1rem;
+  padding: 0.8rem;
+}
+
+.grade-resumo {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  margin-bottom: 2rem;
+}
+
+.resumo span {
+  color: #467f8e;
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.resumo strong {
+  color: #00a987;
+  font-size: 2rem;
+}
+
+.resumo .texto-indicador {
+  font-size: 1.35rem;
+}
+
+.indicadores-status {
+  margin-bottom: 2rem;
+}
+
+.indicadores-status ul {
+  display: grid;
+  gap: 0.8rem;
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.indicadores-status li {
+  align-items: center;
+  background: #f6f4ea;
+  border-radius: 12px;
+  color: #467f8e;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem 1rem;
+}
+
+.indicadores-status strong {
+  color: #00a987;
+}
+
+.lista-chamados {
+  display: grid;
+  gap: 1rem;
+}
+
+.lista-pedidos {
+  display: grid;
+  gap: 1rem;
+}
+
+.chamado,
+.pedido {
+  align-items: center;
+  background: #fff;
+  border-left: 4px solid #00c5a1;
+  border-radius: 18px;
+  box-shadow: rgba(0, 0, 0, 0.14) 0 6px 18px;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 220px;
+  padding: 1.4rem;
+}
+
+.pedido {
+  grid-template-columns: 1fr 220px;
+}
+
+.chamado h2,
+.pedido h2 {
+  color: #313c3e;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.chamado p,
+.pedido p,
+.pedido li,
+.vazio {
+  color: #467f8e;
+}
+
+.pedido ul {
+  margin-top: 0.8rem;
+  padding-left: 1.2rem;
+}
+
+.pedido-dados {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.resumo-contatos {
+  grid-template-columns: repeat(3, minmax(180px, 1fr));
+}
+
+.contato-cliente {
+  align-items: start;
+}
+
+.contato-dados {
+  display: grid;
+  gap: 1rem;
+}
+
+.dados-cliente {
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: repeat(2, minmax(180px, 1fr));
+}
+
+.dados-cliente span {
+  background: #f6f4ea;
+  border-radius: 10px;
+  color: #467f8e;
+  padding: 0.7rem 0.8rem;
+}
+
+.dados-cliente strong {
+  color: #313c3e;
+}
+
+@media (max-width: 760px) {
+  .topo,
+  .topo nav {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .grade-resumo,
+  .chamado,
+  .pedido {
+    grid-template-columns: 1fr;
+  }
+
+  .dados-cliente {
+    grid-template-columns: 1fr;
+  }
+}

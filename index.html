@@ -1,0 +1,767 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Asul&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/760cba394a.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Napoli Express</title>
+  </head>
+
+  <body>
+    <header class="cabecalho">
+      <section>
+        <a href="#inicio" class="logo">
+          <img src="IMG/logo.png" alt="Napoli Express" />
+        </a>
+        <nav class="navegacao">
+          <div class="links-navegacao">
+            <a href="#inicio">Home</a>
+            <a href="#menu">Menu</a>
+            <a href="#chamados">Contato</a>
+            <a href="#sobre">Sobre</a>
+            <div class="painel-usuario">
+              <span id="saudacao-usuario" class="saudacao-usuario"></span>
+              <button
+                id="botao-sair"
+                class="botao-sair"
+                onclick="sairUsuario()"
+                style="display: none"
+              >
+                Sair
+              </button>
+            </div>
+          </div>
+        </nav>
+      </section>
+    </header>
+    <section id="inicio" class="secao-inicio">
+      <div class="apresentacao">
+        <div class="texto-apresentacao">
+          <img
+            src="IMG/logo-fonte.png"
+            alt="Napoli Express"
+            class="logo-texto"
+          />
+          <p>FaÃ§a seu pedido na melhor da regiÃ£o!</p>
+        </div>
+      </div>
+      <div class="apresentacao">
+        <img
+          class="imagem-inicio"
+          src="IMG/Pizza-home.png"
+          alt="Pizza Napoli Express"
+        />
+      </div>
+    </section>
+    <section id="menu">
+      <h3>Nosso cardÃ¡pio</h3>
+      <hr class="solid" />
+      <div class="categorias-menu">
+        <div onclick="mostrarPizzas()" id="menu-pizza" class="categoria-pizza">
+          <div class="imagem-categoria">
+            <img src="IMG/pizza1.png" alt="Categoria lista-pizzas" />
+          </div>
+          <div class="texto-categoria">
+            <h4>Pizzas</h4>
+          </div>
+        </div>
+        <div
+          id="menu-bebida"
+          onclick="mostrarBebidas()"
+          class="categoria-bebida"
+        >
+          <div class="imagem-categoria">
+            <img src="IMG/bebida.png" alt="Bebida" />
+          </div>
+          <div class="texto-categoria">
+            <h4>Bebidas</h4>
+          </div>
+        </div>
+      </div>
+      <div id="lista-pizzas">
+        <div class="cardapio-pizzas">
+          <div class="monte-pizza">
+            <div class="chamada-monte-pizza">
+              <span>Monte sua pizza</span>
+              <h4>Escolha tamanho, sabores e borda</h4>
+              <p>
+                O limite de sabores muda automaticamente conforme o tamanho
+                escolhido.
+              </p>
+            </div>
+
+            <div class="passos-monte-pizza">
+              <div class="bloco-pedido-pizza">
+                <h5>1. Tamanho</h5>
+                <div class="tamanhos-pizza">
+                  <label class="tamanho-pizza-opcao">
+                    <input
+                      type="radio"
+                      name="tamanho-pizza"
+                      value="Pequena"
+                      data-fatias="4"
+                      data-sabores="1"
+                      data-preco="34.90"
+                      checked
+                    />
+                    <span>Pequena</span>
+                    <small>4 fatias Â· 1 sabor</small>
+                  </label>
+                  <label class="tamanho-pizza-opcao">
+                    <input
+                      type="radio"
+                      name="tamanho-pizza"
+                      value="MÃ©dia"
+                      data-fatias="6"
+                      data-sabores="2"
+                      data-preco="39.90"
+                    />
+                    <span>MÃ©dia</span>
+                    <small>6 fatias Â· atÃ© 2 sabores</small>
+                  </label>
+                  <label class="tamanho-pizza-opcao">
+                    <input
+                      type="radio"
+                      name="tamanho-pizza"
+                      value="Grande"
+                      data-fatias="8"
+                      data-sabores="2"
+                      data-preco="49.90"
+                    />
+                    <span>Grande</span>
+                    <small>8 fatias Â· atÃ© 2 sabores</small>
+                  </label>
+                  <label class="tamanho-pizza-opcao">
+                    <input
+                      type="radio"
+                      name="tamanho-pizza"
+                      value="FamÃ­lia"
+                      data-fatias="12"
+                      data-sabores="3"
+                      data-preco="69.90"
+                    />
+                    <span>FamÃ­lia</span>
+                    <small>12 fatias Â· atÃ© 3 sabores</small>
+                  </label>
+                </div>
+              </div>
+
+              <div class="bloco-pedido-pizza">
+                <h5>2. Sabores</h5>
+                <p id="limite-sabores-pizza" class="aviso-pedido-pizza">
+                  Escolha 1 sabor.
+                </p>
+                <div class="sabores-pizza">
+                  <p class="grupo-sabores">Salgados</p>
+                  <label
+                    ><input type="checkbox" value="Mussarela" />
+                    Mussarela</label
+                  >
+                  <label
+                    ><input type="checkbox" value="Calabresa" />
+                    Calabresa</label
+                  >
+                  <label
+                    ><input type="checkbox" value="Portuguesa" />
+                    Portuguesa</label
+                  >
+                  <label
+                    ><input type="checkbox" value="Frango com Catupiry" />
+                    Frango com Catupiry</label
+                  >
+                  <label
+                    ><input type="checkbox" value="Marguerita" />
+                    Marguerita</label
+                  >
+                  <label
+                    ><input type="checkbox" value="Quatro Queijos" /> Quatro
+                    Queijos</label
+                  >
+                  <label
+                    ><input type="checkbox" value="Pepperoni" />
+                    Pepperoni</label
+                  >
+                  <label
+                    ><input type="checkbox" value="Toscana" /> Toscana</label
+                  >
+                  <label
+                    ><input type="checkbox" value="Napolitana" />
+                    Napolitana</label
+                  >
+                  <label
+                    ><input type="checkbox" value="Bacon Supreme" /> Bacon
+                    Supreme</label
+                  >
+                  <label
+                    ><input type="checkbox" value="Milho com Bacon" /> Milho com
+                    Bacon</label
+                  >
+                  <label
+                    ><input type="checkbox" value="Atum Especial" /> Atum
+                    Especial</label
+                  >
+                  <label
+                    ><input type="checkbox" value="Carne Seca" /> Carne
+                    Seca</label
+                  >
+                  <label
+                    ><input type="checkbox" value="Parma com RÃºcula" /> Parma
+                    com RÃºcula</label
+                  >
+                  <label
+                    ><input type="checkbox" value="Caprese" /> Caprese</label
+                  >
+                  <label
+                    ><input type="checkbox" value="BrÃ³colis com Bacon" />
+                    BrÃ³colis com Bacon</label
+                  >
+                  <label
+                    ><input type="checkbox" value="Strogonoff de Frango" />
+                    Strogonoff de Frango</label
+                  >
+                  <label
+                    ><input type="checkbox" value="Napoli Express" /> Napoli
+                    Express</label
+                  >
+                  <p class="grupo-sabores">Doces</p>
+                  <label class="opcao-doce"
+                    ><input type="checkbox" value="Chocolate ao Leite" /><span
+                      >Chocolate ao Leite</span
+                    ><small
+                      >Chocolate ao leite derretido e granulado.</small
+                    ></label
+                  >
+                  <label class="opcao-doce"
+                    ><input type="checkbox" value="Brigadeiro" /><span
+                      >Brigadeiro</span
+                    ><small
+                      >Chocolate ao leite, brigadeiro cremoso e
+                      granulado.</small
+                    ></label
+                  >
+                  <label class="opcao-doce"
+                    ><input type="checkbox" value="PrestÃ­gio" /><span
+                      >PrestÃ­gio</span
+                    ><small
+                      >Chocolate ao leite, coco ralado e leite
+                      condensado.</small
+                    ></label
+                  >
+                  <label class="opcao-doce"
+                    ><input type="checkbox" value="Banana com Canela" /><span
+                      >Banana com Canela</span
+                    ><small
+                      >Banana fatiada, leite condensado, aÃ§Ãºcar e canela.</small
+                    ></label
+                  >
+                  <label class="opcao-doce"
+                    ><input type="checkbox" value="Romeu e Julieta" /><span
+                      >Romeu e Julieta</span
+                    ><small
+                      >Mussarela, goiabada cremosa e toque de leite
+                      condensado.</small
+                    ></label
+                  >
+                  <label class="opcao-doce"
+                    ><input
+                      type="checkbox"
+                      value="Morango com Chocolate"
+                    /><span>Morango com Chocolate</span
+                    ><small
+                      >Chocolate ao leite, morangos frescos e leite
+                      condensado.</small
+                    ></label
+                  >
+                  <label class="opcao-doce"
+                    ><input type="checkbox" value="SensaÃ§Ã£o" /><span
+                      >SensaÃ§Ã£o</span
+                    ><small
+                      >Chocolate ao leite, morangos frescos e raspas de
+                      chocolate branco.</small
+                    ></label
+                  >
+                  <label class="opcao-doce"
+                    ><input type="checkbox" value="Chocolate Branco" /><span
+                      >Chocolate Branco</span
+                    ><small
+                      >Chocolate branco cremoso e raspas de chocolate
+                      branco.</small
+                    ></label
+                  >
+                  <label class="opcao-doce"
+                    ><input type="checkbox" value="Churros" /><span
+                      >Churros</span
+                    ><small
+                      >Doce de leite, aÃ§Ãºcar, canela e toque de leite
+                      condensado.</small
+                    ></label
+                  >
+                  <label class="opcao-doce"
+                    ><input type="checkbox" value="Banana Nevada" /><span
+                      >Banana Nevada</span
+                    ><small
+                      >Banana caramelizada, chocolate branco e canela.</small
+                    ></label
+                  >
+                  <label class="opcao-doce"
+                    ><input type="checkbox" value="Oreo" /><span>Oreo</span
+                    ><small
+                      >Chocolate ao leite, pedaÃ§os de OreoÂ® e leite
+                      condensado.</small
+                    ></label
+                  >
+                  <label class="opcao-doce"
+                    ><input type="checkbox" value="Nutella com Morango" /><span
+                      >NutellaÂ® com Morango</span
+                    ><small
+                      >Creme de avelÃ£, morangos frescos e leite
+                      condensado.</small
+                    ></label
+                  >
+                </div>
+              </div>
+
+              <div class="bloco-pedido-pizza fechamento-pizza">
+                <h5>3. Borda</h5>
+                <select id="borda-pizza">
+                  <option value="Sem borda" data-preco="0">Sem borda</option>
+                  <option value="Catupiry" data-preco="8.90">
+                    Catupiry + R$ 8,90
+                  </option>
+                  <option value="Cheddar" data-preco="10.90">
+                    Cheddar + R$ 10,90
+                  </option>
+                  <option value="Chocolate" data-preco="12.90">
+                    Chocolate + R$ 12,90
+                  </option>
+                </select>
+
+                <div class="resumo-pedido-pizza">
+                  <strong id="resumo-pizza">Pequena Â· 4 fatias</strong>
+                  <span id="resumo-sabores-pizza">Nenhum sabor escolhido</span>
+                  <span id="resumo-borda-pizza">Sem borda</span>
+                  <p id="total-pizza">R$ 34,90</p>
+                </div>
+
+                <p id="mensagem-monte-pizza" class="recado-pedido-pizza"></p>
+                <button
+                  type="button"
+                  class="botao-adicionar-pizza"
+                  onclick="adicionarPizzaMontada()"
+                >
+                  <i class="fa-solid fa-cart-plus"></i> Adicionar pizza
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="lista-bebidas">
+        <div class="chamada-bebidas">
+          <span>Bebidas</span>
+          <h4>Escolha sua bebida</h4>
+          <p>Refrigerantes gelados para acompanhar sua pizza.</p>
+        </div>
+        <div class="item-cardapio">
+          <div class="bebida-grande">
+            <img
+              src="IMG/coca2l.png"
+              class="imagem-bebida-grande"
+              alt="Refrigerante Coca Cola 2L"
+            />
+          </div>
+          <div class="info-item-cardapio">
+            <h4 class="nome-item-cardapio">Coca-Cola 2L</h4>
+            <h4 class="preco-item-cardapio">R$ 14,90</h4>
+            <button
+              onclick="adicionarAoCarrinho('coca-cola-2l', 14.90, 'Coca-Cola 2L')"
+              class="botao-adicionar-carrinho"
+            >
+              <i class="fa-solid fa-cart-plus icone-carrinho"></i>
+            </button>
+          </div>
+        </div>
+        <div class="item-cardapio">
+          <div class="bebida-grande">
+            <img
+              src="IMG/fanta2l.png"
+              class="imagem-bebida-grande"
+              alt="Refrigerante Fanta 2L"
+            />
+          </div>
+          <div class="info-item-cardapio">
+            <h4 class="nome-item-cardapio">Fanta Laranja 2L</h4>
+            <h4 class="preco-item-cardapio">R$ 11,90</h4>
+            <button
+              onclick="adicionarAoCarrinho('fanta-laranja-2l', 11.90, 'Fanta Laranja 2L')"
+              class="botao-adicionar-carrinho"
+            >
+              <i class="fa-solid fa-cart-plus icone-carrinho"></i>
+            </button>
+          </div>
+        </div>
+        <div class="item-cardapio">
+          <div class="bebida-grande">
+            <img
+              src="IMG/sprite2l.png"
+              class="imagem-bebida-grande"
+              alt="Refrigerante Sprite 2L"
+            />
+          </div>
+          <div class="info-item-cardapio">
+            <h4 class="nome-item-cardapio">Agua Mineral 500ml</h4>
+            <h4 class="preco-item-cardapio">R$ 4,50</h4>
+            <button
+              onclick="adicionarAoCarrinho('agua-mineral-500ml', 4.50, 'Agua Mineral 500ml')"
+              class="botao-adicionar-carrinho"
+            >
+              <i class="fa-solid fa-cart-plus icone-carrinho"></i>
+            </button>
+          </div>
+        </div>
+        <div class="item-cardapio">
+          <div class="bebida-grande">
+            <img
+              src="IMG/antartica.png"
+              class="imagem-bebida-grande"
+              alt="Refrigerante GuaranÃ¡ Antartica 2L"
+            />
+          </div>
+          <div class="info-item-cardapio">
+            <h4 class="nome-item-cardapio">GuaranÃ¡ Antartica 2L</h4>
+            <h4 class="preco-item-cardapio">R$ 12,90</h4>
+            <button
+              onclick="adicionarAoCarrinho('guarana-antartica-2l', 12.90, 'GuaranÃ¡ Antartica 2L')"
+              class="botao-adicionar-carrinho"
+            >
+              <i class="fa-solid fa-cart-plus icone-carrinho"></i>
+            </button>
+          </div>
+        </div>
+        <div class="item-cardapio">
+          <div class="bebida-grande">
+            <img
+              src="IMG/coca1,5.png"
+              class="imagem-bebida-media"
+              alt="Suco de Laranja 1L"
+            />
+          </div>
+          <div class="info-item-cardapio">
+            <h4 class="nome-item-cardapio">Suco de Laranja 1L</h4>
+            <h4 class="preco-item-cardapio">R$ 9,90</h4>
+            <button
+              onclick="adicionarAoCarrinho('suco-de-laranja-1l', 9.90, 'Suco de Laranja 1L')"
+              class="botao-adicionar-carrinho"
+            >
+              <i class="fa-solid fa-cart-plus icone-carrinho"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="sobre" class="secao-sobre">
+      <div class="conteudo-sobre">
+        <div class="texto-sobre">
+          <h3 class="titulo-sobre">
+            <i class="fa-solid fa-utensils icone-titulo-sobre"></i>
+            <span>
+              <small>Nossa</small>
+              <strong>Casa</strong>
+            </span>
+          </h3>
+          <p>
+            Um ambiente acolhedor para reunir a famÃ­lia, encontrar os amigos e
+            aproveitar uma pizza preparada com cuidado em cada detalhe.
+          </p>
+          <p>
+            Nossa pizzaria combina conforto, atendimento prÃ³ximo e aquele clima
+            de casa para transformar cada visita em um momento especial.
+          </p>
+          <p>
+            Venha conhecer nosso espaÃ§o e viver a experiÃªncia Napoli Express de
+            perto.
+          </p>
+        </div>
+        <div class="fotos-sobre">
+          <figure class="foto-sobre foto-sobre-principal">
+            <img src="IMG/nosso-espaco.png" alt="Ãrea externa da pizzaria" />
+          </figure>
+          <figure class="foto-sobre foto-sobre-secundaria">
+            <img src="IMG/nosso-espaco2.png" alt="SalÃ£o da pizzaria" />
+          </figure>
+        </div>
+      </div>
+    </section>
+    <section class="secao-comandos" aria-labelledby="titulo-comandos">
+      <i class="fa-brands fa-instagram icone-comandos"></i>
+      <h3 id="titulo-comandos">Siga nosso dia a dia</h3>
+      <div class="grade-comandos">
+        <a
+          href="https://www.instagram.com/napoliexpress"
+          target="_blank"
+          class="cartao-comando post-cardapio"
+        >
+          <img src="IMG/insta1.png" alt="Post do Instagram Napoli Express" />
+        </a>
+        <a
+          href="https://www.instagram.com/napoliexpress"
+          target="_blank"
+          class="cartao-comando post-fachada"
+        >
+          <img src="IMG/fachada.png" alt="Fachada da Napoli Express" />
+        </a>
+        <a
+          href="https://www.instagram.com/napoliexpress"
+          target="_blank"
+          class="cartao-comando post-pizza"
+        >
+          <img src="IMG/insta2.png" alt="Post de pizza Napoli Express" />
+        </a>
+        <a
+          href="https://www.instagram.com/napoliexpress"
+          target="_blank"
+          class="cartao-comando post-sobremesa"
+        >
+          <img src="IMG/insta3.png" alt="Post de sobremesa Napoli Express" />
+        </a>
+      </div>
+      <a
+        href="https://www.instagram.com/napoliexpress"
+        target="_blank"
+        class="botao-comandos"
+        >@napoliexpress</a
+      >
+    </section>
+    <section id="chamados">
+      <div class="conteiner-chamados">
+        <div class="abrir-chamado">
+          <h3>Fale Conosco</h3>
+          <form id="formulario-chamado">
+            <div class="grupo-formulario">
+              <input type="text" id="nome-chamado" placeholder="Nome" />
+            </div>
+            <div class="grupo-formulario">
+              <input type="email" id="email-chamado" placeholder="Email" />
+            </div>
+            <div class="grupo-formulario">
+              <input type="tel" id="telefone-chamado" placeholder="Telefone" />
+            </div>
+            <div class="grupo-formulario">
+              <select id="unidade-chamado">
+                <option value="Napoli Alphaville">Napoli Alphaville</option>
+              </select>
+            </div>
+            <div class="grupo-formulario">
+              <select id="assunto-chamado" required>
+                <option value="InformaÃ§Ãµes">InformaÃ§Ãµes</option>
+                <option value="SugestÃµes">SugestÃµes</option>
+                <option value="ReclamaÃ§Ãµes">ReclamaÃ§Ãµes</option>
+              </select>
+            </div>
+            <div class="grupo-formulario">
+              <textarea
+                id="descricao-chamado"
+                required
+                placeholder="Mensagem"
+              ></textarea>
+            </div>
+            <button type="submit" class="botao-formulario">
+              <i class="fa-regular fa-paper-plane"></i> Enviar
+            </button>
+          </form>
+          <p id="mensagem-chamado" class="mensagem-chamado"></p>
+        </div>
+      </div>
+    </section>
+    <footer class="rodape">
+      <div class="conteudo-rodape">
+        <div class="coluna-rodape locais-rodape">
+          <h3>Locais</h3>
+          <div class="grade-locais">
+            <address>
+              <strong>Napoli Alphaville</strong>
+              <span>Alameda Rio Negro, 585</span>
+              <a href="tel:+5511987675453"
+                ><i class="fa-solid fa-phone"></i> (11) 98767-5453</a
+              >
+            </address>
+          </div>
+        </div>
+
+        <nav class="coluna-rodape links-rodape" aria-label="Links do rodapÃ©">
+          <a href="#sobre">Nossa pizzaria</a>
+          <a href="#menu">CardÃ¡pio</a>
+          <a href="#inicio">Delivery</a>
+          <a href="#chamados">Contato</a>
+        </nav>
+
+        <div class="coluna-rodape marca-rodape">
+          <img src="IMG/logo-rodape.png" alt="Napoli Express" />
+          <strong>Pizzaria Napoli Express LTDA</strong>
+          <span>CNPJ 98987321/0004-60</span>
+          <span>contato@napolipizzaria.com.br</span>
+          <div class="horario-rodape">
+            <strong>HorÃ¡rio de atendimento</strong>
+            <span>TerÃ§a a domingo: 18h Ã s 23h</span>
+            <span>Segunda-feira: fechado</span>
+          </div>
+        </div>
+      </div>
+      <div class="social-rodape">
+        <a
+          href="https://www.instagram.com/napoliexpress"
+          target="_blank"
+          aria-label="Instagram da Napoli Express"
+          ><i class="fa-brands fa-instagram"></i
+        ></a>
+        <a
+          href="https://www.facebook.com/napoliexpress"
+          target="_blank"
+          aria-label="Facebook da Napoli Express"
+          ><i class="fa-brands fa-facebook-f"></i
+        ></a>
+      </div>
+      <p class="credito-rodape">@2026 - Napoli Express</p>
+    </footer>
+    <div id="aviso">
+      <div id="descricao-aviso">Pedido realizado com sucesso!</div>
+    </div>
+    <div
+      id="carrinho-flutuante"
+      class="carrinho-flutuante"
+      style="display: none"
+    >
+      <div class="cabecalho-carrinho">
+        <h3>Bilhete do pedido</h3>
+      </div>
+      <div id="itens-carrinho" class="itens-carrinho"></div>
+      <div class="dados-entrega">
+        <label for="endereco-pedido">EndereÃ§o de entrega</label>
+        <input
+          type="text"
+          id="endereco-pedido"
+          placeholder="Rua, nÃºmero, bairro e complemento"
+        />
+
+        <label for="pagamento-pedido">Forma de pagamento</label>
+        <select id="pagamento-pedido">
+          <option value="">Selecione</option>
+          <option value="Dinheiro">Dinheiro</option>
+          <option value="CartÃ£o de crÃ©dito">CartÃ£o de crÃ©dito</option>
+          <option value="CartÃ£o de dÃ©bito">CartÃ£o de dÃ©bito</option>
+          <option value="Pix">Pix</option>
+        </select>
+      </div>
+      <div class="total-carrinho">
+        <span>Total</span>
+        <span id="total-carrinho">R$ 0,00</span>
+      </div>
+      <p id="mensagem-pedido" class="mensagem-pedido"></p>
+      <button
+        id="finalizar-pedido"
+        class="botao-finalizar"
+        onclick="finalizarPedido()"
+        disabled
+      >
+        Finalizar pedido
+      </button>
+    </div>
+    <div
+      id="modal-autenticacao"
+      class="modal-autenticacao"
+      aria-modal="true"
+      role="dialog"
+    >
+      <div class="conteudo-modal">
+        <h2>Antes de continuar</h2>
+        <div class="abas-autenticacao">
+          <button id="aba-login" class="aba-autenticacao ativo" type="button">
+            Login
+          </button>
+          <button id="aba-cadastro" class="aba-autenticacao" type="button">
+            Cadastro
+          </button>
+        </div>
+        <form id="formulario-autenticacao">
+          <div class="grupo-formulario">
+            <label for="email-autenticacao">Email</label>
+            <input
+              type="email"
+              id="email-autenticacao"
+              placeholder="email@exemplo.com"
+            />
+          </div>
+          <div class="grupo-formulario">
+            <label for="senha-autenticacao">Senha</label>
+            <input
+              type="password"
+              id="senha-autenticacao"
+              placeholder="MÃ­nimo 6 caracteres"
+            />
+          </div>
+          <button
+            id="botao-recuperar-senha"
+            class="botao-recuperar-senha"
+            type="button"
+          >
+            Esqueceu sua senha?
+          </button>
+          <div
+            id="campos-cadastro"
+            class="campos-cadastro"
+            style="display: none"
+          >
+            <div class="grupo-formulario">
+              <label for="nome-autenticacao">Nome</label>
+              <input
+                type="text"
+                id="nome-autenticacao"
+                placeholder="Seu nome completo"
+              />
+            </div>
+          </div>
+          <div
+            id="campos-recuperacao"
+            class="campos-recuperacao"
+            style="display: none"
+          >
+            <div class="grupo-formulario">
+              <label for="confirmar-senha-autenticacao"
+                >Confirmar nova senha</label
+              >
+              <input
+                type="password"
+                id="confirmar-senha-autenticacao"
+                placeholder="Digite a senha novamente"
+              />
+            </div>
+          </div>
+          <button
+            id="botao-autenticacao"
+            class="botao-autenticacao"
+            type="submit"
+          >
+            Entrar
+          </button>
+          <p id="mensagem-autenticacao" class="mensagem-autenticacao"></p>
+        </form>
+      </div>
+    </div>
+    <script src="scripts.js"></script>
+  </body>
+</html>
+
